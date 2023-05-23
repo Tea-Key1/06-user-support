@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>35 - Mixing HTML and WebGL</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <canvas class="webgl"></canvas>
+
+    <!-- <div class="loading-bar"></div> -->
+
+    <div class="button-wrapper">
+		<div class="text-box">
+			<span class="box-title">あなたのタスク(順番に実行してください)</span>
+			<p>1.&emsp;ボタンAを押してください。<br>2.&emsp;3つのチェックボックスに全てチェックを入れてください。<br>3.&emsp;ボタンBを押してください。<br>4.&emsp;完了時間を記録してください。</p>
+		</div>
+        <button id="start-btn" class="btn--orange btn--shadow" onclick="startTimer()" style="width: 100px; padding: 10px;">ボタンA</button>
+        <button id="stop-btn" class="btn--blue btn--shadow" onclick="stopTimer()" style="width: 100px; padding: 10px; display:none">ボタンB</button>
+		<div id="timer" class="timer"></div>
+    </div>
+
+    <div class="point point-0">
+        <div class="label">
+			<div class="checkboxes" style="display: none;">
+				<input type="checkbox" id="checkbox1" onclick="checkCompletion()" style="position: absolute; height: 25px; width: 25px; top: 19%; left: 19%;">
+			</div>
+		</div>
+        <div class="text">高性能フルスクリーンディスプレイ搭載</div>
+    </div>
+    <div class="point point-1">
+        <div class="label">
+			<div class="checkboxes" style="display: none;">
+				<input type="checkbox" id="checkbox2" onclick="checkCompletion()" style="position: absolute; height: 25px; width: 25px; top: 19%; left: 19%;">
+			</div>
+		</div>
+        <div class="text">過去の事故事例の研究を通し、より安全・快適なヘルメット開発</div>
+    </div>
+    <div class="point point-2">
+        <div class="label">
+			<div class="checkboxes" style="display: none;">
+				<input type="checkbox" id="checkbox3" onclick="checkCompletion()" style="position: absolute; height: 25px; width: 25px; top: 19%; left: 19%;">
+			</div>
+		</div>
+        <div class="text">アゴバンドを固定する耳紐の採用で、前後からの衝撃によるヘルメットのズレや脱落を防止</div>
+    </div>
+    
+	<div class="user-support-wrapper">
+		<div class="user-support">
+			<img src="textures/icon/scroll.svg" class="img">
+			<!-- <img src="textures/icon/nothing.svg" class="img"> -->
+		</div>
+	</div>
+
+    <script type="module" src="./main.js"></script>
+    <script>
+		let startTime;
+		let timerInterval;
+
+		function startTimer() {
+			startTime = new Date().getTime();
+			timerInterval = setInterval(updateTimer, 100);
+			var checkboxes = document.getElementsByClassName("checkboxes")
+			for(var i=0; i < checkboxes.length; i++){
+				checkboxes[i].style.display = "block";
+			}
+			document.getElementById("start-btn").style.display = "none";
+		}
+
+		function updateTimer() {
+			let currentTime = new Date().getTime();
+			let elapsedTime = new Date(currentTime - startTime);
+			let hours = elapsedTime.getUTCHours();
+			let minutes = elapsedTime.getUTCMinutes();
+			let seconds = elapsedTime.getUTCSeconds();
+			let milliseconds = elapsedTime.getUTCMilliseconds();
+
+			document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+		}
+
+		function stopTimer() {
+			clearInterval(timerInterval);
+			document.getElementById("stop-btn").style.display = "none";
+			alert("タイム: " + document.getElementById("timer").innerHTML);
+		}
+
+		function checkCompletion() {
+			let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			let allChecked = true;
+			for (let i = 0; i < checkboxes.length; i++) {
+				if (!checkboxes[i].checked) {
+					allChecked = false;
+					break;
+				}
+			}
+			if (allChecked) {
+				document.getElementById("stop-btn").style.display = "block";
+				document.getElementById("checkbox1").style.display = "none";
+				document.getElementById("checkbox2").style.display = "none";
+				document.getElementById("checkbox3").style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>
