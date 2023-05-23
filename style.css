@@ -241,7 +241,7 @@ body
     margin-top: 22px;
     /* padding: 0 9px; */
     text-align: left;
-    font-size: 2vw;
+    font-size: 1.2em;
     font-style: oblique;
     height: auto;
     width: auto;
@@ -255,7 +255,7 @@ body
   margin-top: 4vh;
   padding: 0 2vw;
   line-height: 1;
-  font-size: 2vw;
+  font-size: 1em;
   height: auto;
   width: auto;
   color: #000000;
