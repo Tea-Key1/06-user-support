@@ -138,11 +138,15 @@ body
     font-size: 25px;
 }
 
+.user-support-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .user-support
 {
     position: relative;
-    margin-left: 25%;
-    margin-top: 25%;
     width: 50%;
     height: 50%;
     /* animation: move 3s infinite; */
@@ -163,6 +167,7 @@ body
 .img
 {
     position: absolute;
+    display: none;
     top: 0;
     left: 0;
     width: 100%;
@@ -227,28 +232,30 @@ body
 }
 /* モバイル向けスタイル */
 @media (max-width: 1023px){
+    #flick{
+        display: inline-block;
+    }
   .text-box{
     position: relative;
     /* display: inline-block; */
     margin-top: 22px;
     /* padding: 0 9px; */
     text-align: left;
-    font-size: 2vh;
+    font-size: 2vw;
     font-style: oblique;
     height: auto;
     width: auto;
     background: #FFF;
     color: #4092df;
     font-weight: bold;
-    white-space: nowrap;
   }
   .text-box p {
   position: relative;
   display: inline-block;
-  margin-top: 2vh;
-  padding: 0 9px;
+  margin-top: 4vh;
+  padding: 0 2vw;
   line-height: 1;
-  font-size: 2vh;
+  font-size: 2vw;
   height: auto;
   width: auto;
   color: #000000;
@@ -259,29 +266,9 @@ body
 
 /* デスクトップ向けスタイル */
 @media (min-width: 1024px) {
-  /* .text-box .box-title {
-    position: absolute;
-    display: inline-block;
-    top: -13px;
-    left: 10px;
-    padding: 0 9px;
-    line-height: 1;
-    font-size: 2vh;
-    height: auto;
-    width: auto;
-    background: #FFF;
-    color: #4092df;
-    font-weight: bold;
-}
-.text-box p {
-    text-align: left; */
-    /* position: relative; */
-    /* float: left; */
-    /* margin: 0; 
-    padding: 0;
-    font-size: 1.5vh;
-    font-style: oblique;
-} */
+    #scroll{
+        display: inline-block;
+    }
 .text-box{
   position: relative;
   /* display: inline-block; */

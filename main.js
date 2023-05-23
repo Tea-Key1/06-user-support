@@ -201,9 +201,9 @@ const curve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-5,0,0),
 ],true)
 
-let lerp = {current:100, target:100, ease:0.05}
-const dummyCurve = new THREE.Vector3(0,0,0)
 
+const dummyCurve = new THREE.Vector3(0,0,0)
+let lerp = {current:100, target:100, ease:0.05}
 
 addEventListener("wheel", (e)=>{
     if(e.deltaY>0){
@@ -215,6 +215,27 @@ addEventListener("wheel", (e)=>{
         }
     }
 })
+
+let touchStartY = null;
+canvas.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+});
+
+canvas.addEventListener('touchmove', (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - touchStartY;
+
+    if (deltaY > 0) {
+        lerp.target += 0.01;
+    } else {
+        lerp.target -= 0.01;
+        if (lerp.target < 0) {
+            lerp.target = 100;
+        }
+    }
+
+    touchStartY = touchY;
+});
 
 // Controls
 // const controls = new OrbitControls(camera, canvas)
