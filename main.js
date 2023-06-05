@@ -203,39 +203,68 @@ const curve = new THREE.CatmullRomCurve3([
 
 
 const dummyCurve = new THREE.Vector3(0,0,0)
-let lerp = {current:100, target:100, ease:0.05}
+let lerp = {current:100, target:100, ease:0.02}
 
-addEventListener("wheel", (e)=>{
-    if(e.deltaY>0){
-        lerp.target += 0.01;
-    }else{
-        lerp.target -= 0.01;
-        if(lerp.target < 0){
-            lerp.target =100
-        }
+// addEventListener("wheel", (e)=>{
+//   if(e.deltaY>0){
+//       lerp.target += 0.01;
+//   }else{
+//       lerp.target -= 0.01;
+//       if(lerp.target < 0){
+//           lerp.target =100
+//       }
+//   }
+// })
+
+const side_right = document.querySelector(".side_right")
+const side_left = document.querySelector(".side_left")
+
+const Event_right = () => {
+    lerp.target += 0.2;
+};
+
+const Event_left = () => {
+    lerp.target -= 0.1;
+    if (lerp.target < 0) {
+      lerp.target = 100;
     }
-})
+};
 
-let touchStartY = null;
-canvas.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-});
+side_right.addEventListener("mousedown", Event_right);
+// side_right.addEventListener("mouseup", Event_right);
+// side_right.addEventListener("mouseleave", Event_right);
+side_right.addEventListener("touchstart", Event_right);
+// side_right.addEventListener("touchend", Event_right);
+// side_right.addEventListener("touchcancel", Event_right);
 
-canvas.addEventListener('touchmove', (e) => {
-    const touchY = e.touches[0].clientY;
-    const deltaY = touchY - touchStartY;
+side_left.addEventListener("mousedown", Event_left);
+// side_left.addEventListener("mouseup", Event_left);
+// side_left.addEventListener("mouseleave", Event_left);
+side_left.addEventListener("touchstart", Event_left);
+// side_left.addEventListener("touchend", Event_left);
+// side_left.addEventListener("touchcancel", Event_left);
 
-    if (deltaY > 0) {
-        lerp.target += 0.01;
-    } else {
-        lerp.target -= 0.01;
-        if (lerp.target < 0) {
-            lerp.target = 100;
-        }
-    }
 
-    touchStartY = touchY;
-});
+// let touchStartY = null;
+// canvas.addEventListener('touchstart', (e) => {
+//     touchStartY = e.touches[0].clientY;
+// });
+
+// canvas.addEventListener('touchmove', (e) => {
+//     const touchY = e.touches[0].clientY;
+//     const deltaY = touchY - touchStartY;
+
+//     if (deltaY > 0) {
+//         lerp.target += 0.01;
+//     } else {
+//         lerp.target -= 0.01;
+//         if (lerp.target < 0) {
+//             lerp.target = 100;
+//         }
+//     }
+
+//     touchStartY = touchY;
+// });
 
 // Controls
 // const controls = new OrbitControls(camera, canvas)

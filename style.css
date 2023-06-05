@@ -138,6 +138,28 @@ body
     font-size: 25px;
 }
 
+.side_right{
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    width: 10vw;
+    height: 10vh;
+    background-color: #4f9ddd;
+    opacity: 0.5;
+    /* border-radius: 10%; */
+}
+
+.side_left{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 10vw;
+    height: 10vh;
+    background-color: #4f9ddd;
+    opacity: 0.5;
+    /* border-radius: 10%; */
+}
+
 .user-support-wrapper{
     display: flex;
     justify-content: center;
@@ -232,8 +254,11 @@ body
 }
 /* モバイル向けスタイル */
 @media (max-width: 750px){
-    #flick{
+    #mobile{
         display: inline-block;
+    }
+    #desktop{
+        display: none;
     }
     .text-box {
         position: relative;
@@ -278,7 +303,10 @@ body
 
 /* デスクトップ向けスタイル */
 @media (min-width: 751px) {
-    #scroll{
+    #mobile{
+        display: none;
+    }
+    #desktop{
         display: inline-block;
     }
     .text-box{
